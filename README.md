@@ -59,8 +59,8 @@ grep -rl "contact.miamiaisolutions@gmail.com" *.html
 
 ### 3. Founder bio — done
 
-`about.html` carries the founder bio under "Who's behind it". A headshot can
-still be added there if you want one.
+`about.html` carries the founder bio under "The founder". A headshot can still be
+added there if you want one.
 
 ### 4. Contact form backend — done
 
@@ -92,11 +92,11 @@ the Formspree origin added, so the form would be blocked there until it matches
 `Strict-Transport-Security`, and a `Content-Security-Policy` whose only external
 origins are Google Fonts and — in `vercel.json` — Formspree.
 
-**The two files have drifted:** `vercel.json` allows `https://formspree.io` in
-`connect-src` and `form-action`; `_headers` does not. Vercel is the live host, so
-the form works today, but bring `_headers` in line before deploying anywhere that
-reads it. On a host other than Netlify or Vercel, set the same headers in that
-host's own configuration.
+Both files carry the identical policy, including `https://formspree.io` in
+`connect-src` and `form-action` so the contact form can POST. Keep them in step:
+Vercel reads `vercel.json` and ignores `_headers`, so a change made in only one of
+them will not surface until the site is deployed somewhere else. On a host other
+than Netlify or Vercel, set the same headers in that host's own configuration.
 
 ## Brand assets
 
