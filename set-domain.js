@@ -16,7 +16,11 @@
 const fs = require('fs');
 const path = require('path');
 
-const CURRENT_ORIGIN = 'https://www.miamiaisolutions.com';
+// The site's absolute URLs currently point at the Vercel deploy, because
+// miamiaisolutions.com has not been purchased yet. This constant has to match
+// what is actually in the files, or the script silently finds nothing.
+// TODO: revert to miamiaisolutions.com once domain is purchased
+const CURRENT_ORIGIN = 'https://miami-ai-solutions-two.vercel.app';
 
 const FILES = [
   'index.html',

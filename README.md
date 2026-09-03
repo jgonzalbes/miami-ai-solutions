@@ -37,16 +37,26 @@ system mostly works too, but a server matches how the site actually behaves.)
 
 ### 1. Domain
 
-The site uses `https://www.miamiaisolutions.com` for canonical URLs, Open Graph
-tags, JSON-LD and the sitemap. Absolute URLs have to be in the HTML for SEO, so
-instead of editing them by hand, change the domain in one command:
+`miamiaisolutions.com` is not registered yet, so canonical URLs, Open Graph tags,
+JSON-LD and the sitemap all point at the current deploy,
+`https://miami-ai-solutions-two.vercel.app`. Absolute URLs have to be in the HTML
+for SEO, so instead of editing them by hand, change the domain in one command
+once the real one is bought:
 
 ```bash
-node set-domain.js www.yourdomain.com
+node set-domain.js www.miamiaisolutions.com
 ```
 
 That rewrites the five pages plus `sitemap.xml` and `robots.txt`, and updates its
 own constant so it stays runnable. Delete the script once the real domain is set.
+
+Two things to do at the same time as that switch:
+
+- Drop the `X-Robots-Tag: noindex` block in `vercel.json`. It is scoped to the
+  host `miami-ai-solutions-two.vercel.app`, which is the host the canonical URLs
+  now name — so **the site is currently telling search engines not to index it**.
+  That is fine while the domain is pending; it has to go before launch.
+- Update this README, which `set-domain.js` does not rewrite.
 
 ### 2. Contact email — done
 
