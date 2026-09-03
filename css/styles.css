@@ -478,7 +478,9 @@ strong { color: var(--paper); font-weight: 600; }
   color: var(--silver);
   line-height: 1.5;
 }
-.stack span { color: var(--steel); }
+/* --silver, not --steel: this is small text, and --steel only reaches 3.67:1
+   against --ink (WCAG AA needs 4.5:1 below 18px). */
+.stack span { color: var(--silver); }
 
 @media (min-width: 761px) {
   .proof-item { padding-inline: clamp(1.5rem, 3vw, 2.5rem); }
@@ -614,7 +616,7 @@ a.card:hover .card-more { color: var(--paper); }
 .service-index {
   font-family: var(--font-display);
   font-size: 0.9rem;
-  color: var(--steel);
+  color: var(--silver); /* small text — needs 4.5:1, which --steel misses */
   margin-bottom: 0.5rem;
 }
 .service-block h2 { font-size: clamp(1.4rem, 2.2vw, 1.75rem); margin-bottom: 0.5rem; }
@@ -956,7 +958,7 @@ a.card:hover .card-more { color: var(--paper); }
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
   font-size: 0.88rem;
-  color: var(--steel);
+  color: var(--silver); /* small text — needs 4.5:1, which --steel misses */
 }
 .footer-bottom p { margin: 0; }
 

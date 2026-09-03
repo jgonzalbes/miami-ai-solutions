@@ -1,0 +1,14 @@
+# Files that belong in the repo but not on the live site.
+# This only affects what Vercel uploads and serves — everything here stays in
+# git and on GitHub exactly as before.
+
+# Original unprocessed logo art (~2 MB); assets/ holds the derived versions
+# the site actually uses.
+source-assets/
+
+# Project spec and developer docs
+BUILD.md
+README.md
+
+# One-time dev utility for rewriting the domain
+set-domain.js
