@@ -800,6 +800,13 @@ a.card:hover .card-more { color: var(--paper); }
 .placeholder p { color: var(--silver); font-size: 0.96rem; }
 .placeholder p:last-child { margin-bottom: 0; }
 
+/* Long-form body copy (founder bio) — capped for a comfortable measure */
+.bio {
+  color: var(--silver);
+  max-width: 64ch;
+  font-size: 1.02rem;
+}
+
 /* --------------------------------------------------------------------------
    16. Contact
    -------------------------------------------------------------------------- */

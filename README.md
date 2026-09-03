@@ -48,17 +48,19 @@ node set-domain.js www.yourdomain.com
 That rewrites the five pages plus `sitemap.xml` and `robots.txt`, and updates its
 own constant so it stays runnable. Delete the script once the real domain is set.
 
-### 2. Contact email
+### 2. Contact email — done
 
-`contact.html` shows `hello@miamiaisolutions.com` inside a dashed **Placeholder**
-callout. Replace it with your real inbox and delete the surrounding
-`<div class="placeholder">…</div>` wrapper so the callout disappears.
+`contact.miamiaisolutions@gmail.com` is live on `contact.html` and in the
+`ProfessionalService` JSON-LD on all five pages. Change it in one pass with:
 
-### 3. Founder bio
+```bash
+grep -rl "contact.miamiaisolutions@gmail.com" *.html
+```
 
-`about.html` has a **Placeholder** block under "Who's behind it". Write two to
-four sentences, add a headshot if you want one, and remove the placeholder
-wrapper.
+### 3. Founder bio — done
+
+`about.html` carries the founder bio under "Who's behind it". A headshot can
+still be added there if you want one.
 
 ### 4. Contact form backend
 
