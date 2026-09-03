@@ -35,28 +35,44 @@ system mostly works too, but a server matches how the site actually behaves.)
 
 ## What still needs your input
 
-### 1. Domain
+### 1. Domain — migration checklist
 
-`miamiaisolutions.com` is not registered yet, so canonical URLs, Open Graph tags,
-JSON-LD and the sitemap all point at the current deploy,
-`https://miami-ai-solutions-two.vercel.app`. Absolute URLs have to be in the HTML
-for SEO, so instead of editing them by hand, change the domain in one command
-once the real one is bought:
+The real domain is not connected yet. The site runs at
+`https://miami-ai-solutions-two.vercel.app`, and every absolute URL — canonical
+tags, Open Graph, Twitter cards, JSON-LD, `sitemap.xml`, `robots.txt` — points
+there. **None of the steps below are done.** Do them in this order:
 
-```bash
-node set-domain.js www.miamiaisolutions.com
-```
+- [ ] **1. Connect the real domain in Vercel.** Project → Settings → Domains,
+      add the domain and follow the DNS instructions.
 
-That rewrites the five pages plus `sitemap.xml` and `robots.txt`, and updates its
-own constant so it stays runnable. Delete the script once the real domain is set.
+- [ ] **2. Redirect the `.vercel.app` entry to the real domain.** Settings →
+      Domains → edit the `.vercel.app` entry → **Redirect to**, and pick the real
+      domain. Vercel does *not* do this on its own: without it the `.vercel.app`
+      subdomain keeps serving the whole site in parallel, indefinitely.
 
-Two things to do at the same time as that switch:
+- [ ] **3. Rewrite the absolute URLs.** Run:
 
-- Drop the `X-Robots-Tag: noindex` block in `vercel.json`. It is scoped to the
-  host `miami-ai-solutions-two.vercel.app`, which is the host the canonical URLs
-  now name — so **the site is currently telling search engines not to index it**.
-  That is fine while the domain is pending; it has to go before launch.
-- Update this README, which `set-domain.js` does not rewrite.
+      ```bash
+      node set-domain.js <real-domain>
+      ```
+
+      It rewrites all 7 files that carry the origin — `index.html`,
+      `services.html`, `about.html`, `work.html`, `contact.html`, `sitemap.xml`
+      and `robots.txt` — and updates its own `CURRENT_ORIGIN` so it stays
+      runnable. Commit and deploy the result.
+
+- [ ] **4. Remove the noindex block from `vercel.json`.** The second entry in
+      the `headers` array sends `X-Robots-Tag: noindex` for the host
+      `miami-ai-solutions-two.vercel.app`. It is there on purpose while there is
+      no real domain — but once the domain is connected and redirecting, that
+      block has to go, or the site will not be indexed. Leave the first entry
+      (the security headers) alone: it applies to every host.
+
+- [ ] **5. Submit the sitemap to Google Search Console** under the property for
+      the real domain: `https://<real-domain>/sitemap.xml`.
+
+`set-domain.js` does not touch this README, so update the origin named here at
+step 3 too. The script can be deleted once the real domain is in place.
 
 ### 2. Contact email — done
 
