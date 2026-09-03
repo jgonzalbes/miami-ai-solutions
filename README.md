@@ -62,75 +62,41 @@ grep -rl "contact.miamiaisolutions@gmail.com" *.html
 `about.html` carries the founder bio under "Who's behind it". A headshot can
 still be added there if you want one.
 
-### 4. Contact form backend
+### 4. Contact form backend — done
 
-The form's `action` is the literal string `REPLACE_WITH_YOUR_FORM_ENDPOINT`. While
-it is still there, submitting shows the visitor an honest "this form isn't
-connected yet" message and logs a warning in the console — it never pretends to
-send. See the next section to wire it up.
+The form posts to Formspree and is live in production. Nothing left to wire up.
 
-## Wiring the contact form
+## Contact form
 
-Client-side validation, the honeypot field and the status region already work.
-You only need to point the form at a backend.
+`contact.html` posts to a Formspree endpoint and is working in production on
+Vercel. Submissions arrive in the Formspree dashboard; `vercel.json` allows
+`https://formspree.io` in the CSP's `connect-src` and `form-action`, which the
+browser requires for the POST to go through.
 
-### Option A — Formspree (works on any host)
+Client-side validation, the off-screen honeypot and the `role="status"` live
+region all run before the POST, in `js/main.js`. That file still carries a branch
+that checks for the old `REPLACE_WITH_YOUR_FORM_ENDPOINT` string; it is a no-op
+now that the action is a real endpoint, and it is only worth keeping as a guard in
+case the action is ever reset.
 
-1. Create a form at <https://formspree.io> and copy your form ID.
-2. In `contact.html`, replace the action:
-
-   ```html
-   <form class="form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="post" novalidate>
-   ```
-
-3. Add Formspree to the CSP in **both** `_headers` and `vercel.json` — the browser
-   blocks the POST otherwise:
-
-   ```
-   form-action 'self' https://formspree.io;
-   ```
-
-   (If you switch to Formspree's AJAX endpoint instead of a normal POST, add it to
-   `connect-src` as well.)
-
-### Option B — Netlify Forms (Netlify only)
-
-1. In `contact.html`, change the opening tag to:
-
-   ```html
-   <form class="form" id="contact-form" action="/thank-you.html" method="post" novalidate
-         name="contact" data-netlify="true" netlify-honeypot="company-website">
-   ```
-
-2. Add a hidden field as the first child of the form so Netlify can identify it:
-
-   ```html
-   <input type="hidden" name="form-name" value="contact">
-   ```
-
-3. Create a small `thank-you.html` for the redirect (copy any page and swap the
-   content), and deploy. Netlify picks the form up at build time; submissions show
-   up under **Forms** in the site dashboard.
-
-Netlify Forms posts to your own origin, so the existing `form-action 'self'`
-already covers it. The `netlify-honeypot` attribute reuses the honeypot field that
-is already in the markup.
-
-Either way, once a backend is live, delete the `REPLACE_WITH_YOUR_FORM_ENDPOINT`
-branch check in `js/main.js` only if you want to — it is a no-op as soon as the
-action no longer contains the placeholder string.
+One caveat if the site ever moves off Vercel: `_headers` (the Netlify equivalent)
+still has the original `connect-src 'self'; form-action 'self'` and has not had
+the Formspree origin added, so the form would be blocked there until it matches
+`vercel.json`.
 
 ## Security headers
 
 `_headers` (Netlify) and `vercel.json` (Vercel) ship the same set:
 `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`,
 `Permissions-Policy` (geolocation, camera and microphone disabled),
-`Strict-Transport-Security`, and a `Content-Security-Policy` that allows only
-Google Fonts as an external origin.
+`Strict-Transport-Security`, and a `Content-Security-Policy` whose only external
+origins are Google Fonts and — in `vercel.json` — Formspree.
 
-**Remember:** `connect-src` and `form-action` need your form backend's domain
-added once the contact form is wired up (see above). On a host other than Netlify
-or Vercel, set the same headers in that host's own configuration.
+**The two files have drifted:** `vercel.json` allows `https://formspree.io` in
+`connect-src` and `form-action`; `_headers` does not. Vercel is the live host, so
+the form works today, but bring `_headers` in line before deploying anywhere that
+reads it. On a host other than Netlify or Vercel, set the same headers in that
+host's own configuration.
 
 ## Brand assets
 
