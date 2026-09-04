@@ -8,10 +8,14 @@
    -------------------------------------------------------------------------- */
 :root {
   /* Palette — derived from the brand mark: deep navy/black + brushed chrome */
-  --ink:        #0b0f17;  /* page background */
-  --surface:    #131826;  /* card / section background */
-  --surface-2:  #1a2032;  /* elevated surface, hover */
-  --line:       #262e42;  /* hairline borders */
+  --ink:        #0b0f17;  /* near-black: text on brushed metal, focus ring core.
+                             NOT the page background — it has to stay almost
+                             pure black whatever the page sits at. */
+  --bg:         #171c28;  /* page / section background */
+  --bg-rgb:     23, 28, 40; /* same value, for rgba() tints of the page colour */
+  --surface:    #1e2437;  /* card / section background */
+  --surface-2:  #252d41;  /* elevated surface, hover */
+  --line:       #343c50;  /* hairline borders */
   --steel:      #626d7f;  /* dividers, large numerals, decorative strokes */
   --silver:     #b7c0cc;  /* secondary body text */
   --paper:      #eef1f5;  /* heading white */
@@ -53,7 +57,7 @@ html {
 body {
   margin: 0;
   touch-action: manipulation;
-  background: var(--ink);
+  background: var(--bg);
   color: var(--white);
   font-family: var(--font-body);
   font-size: 1rem;
@@ -186,13 +190,14 @@ strong { color: var(--paper); font-weight: 600; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(11, 15, 23, 0.78);
+  /* Derived from the page colour so the two can never drift apart. */
+  background: rgba(var(--bg-rgb), 0.78);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom: 1px solid var(--line);
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .site-header { background: #0b0f17; }
+  .site-header { background: var(--bg); }
 }
 
 .header-inner {
@@ -302,7 +307,7 @@ strong { color: var(--paper); font-weight: 600; }
     top: 100%;
     left: 0;
     right: 0;
-    background: var(--ink);
+    background: var(--bg);
     border-bottom: 1px solid var(--line);
     padding: 0.5rem var(--gutter) 1.5rem;
     display: none;
@@ -431,7 +436,8 @@ strong { color: var(--paper); font-weight: 600; }
 .trace-4 { animation-delay: 0.54s; }
 
 .node {
-  fill: var(--ink);
+  /* Filled with the page colour so the traces are masked behind each node. */
+  fill: var(--bg);
   stroke: var(--silver);
   stroke-width: 1.6;
   opacity: 0;
@@ -608,8 +614,8 @@ a.card:hover .card-more { color: var(--paper); }
 .cta-band {
   border-top: 1px solid var(--line);
   background:
-    radial-gradient(120% 140% at 12% 0%, rgba(38, 46, 66, 0.55) 0%, rgba(11, 15, 23, 0) 60%),
-    var(--ink);
+    radial-gradient(120% 140% at 12% 0%, rgba(38, 46, 66, 0.55) 0%, rgba(var(--bg-rgb), 0) 60%),
+    var(--bg);
 }
 .cta-inner {
   display: flex;
@@ -944,7 +950,7 @@ a.card:hover .card-more { color: var(--paper); }
 .site-footer {
   border-top: 1px solid var(--line);
   padding-block: clamp(2.5rem, 5vw, 3.5rem) 2rem;
-  background: var(--ink);
+  background: var(--bg);
 }
 .footer-grid {
   display: grid;
