@@ -52,6 +52,7 @@ html {
 
 body {
   margin: 0;
+  touch-action: manipulation;
   background: var(--ink);
   color: var(--white);
   font-family: var(--font-body);
@@ -251,12 +252,20 @@ strong { color: var(--paper); font-weight: 600; }
 /* The generic nav link colour must not win over the button's own colour. */
 .site-nav a.btn-primary { color: var(--ink); }
 .site-nav a.btn-ghost { color: var(--paper); }
+/* The same specificity trap applies to the box: `.site-nav a` (0,1,1) also
+   beats `.btn-sm` (0,1,0), which flattened the header CTA to zero side
+   padding. Restate the button metrics at matching specificity, and floor the
+   height at the 44px touch minimum. */
+.site-nav a.btn-sm {
+  padding: 0.72rem 1.25rem;
+  min-height: 44px;
+}
 .nav-cta { margin-left: clamp(1rem, 2vw, 1.75rem); }
 
 .nav-toggle {
   display: none;
   width: 44px;
-  height: 40px;
+  height: 44px;
   padding: 0;
   background: transparent;
   border: 1px solid var(--line);
@@ -306,6 +315,7 @@ strong { color: var(--paper); font-weight: 600; }
     margin: 1.35rem 0 0;
     padding: 0.72rem 1.3rem;
     font-size: 0.95rem;
+    min-height: 44px;
   }
 }
 
@@ -360,11 +370,18 @@ strong { color: var(--paper); font-weight: 600; }
   font-weight: 500;
   font-size: 0.95rem;
   color: var(--paper);
-  text-decoration: none;
-  border-bottom: 1px solid var(--steel);
-  padding-bottom: 1px;
+  /* The hairline is drawn with text-decoration rather than a bottom border so
+     it keeps hugging the text while the box grows to the 44px touch minimum;
+     a border would ride down to the bottom of the padded box. */
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--steel);
+  text-underline-offset: 6px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
-.link:hover { border-bottom-color: var(--paper); }
+.link:hover { text-decoration-color: var(--paper); }
 
 /* --------------------------------------------------------------------------
    6. Hero
@@ -905,9 +922,18 @@ a.card:hover .card-more { color: var(--paper); }
 .form-status.is-ok { border-left-color: var(--paper); color: var(--paper); }
 
 .info-block { display: grid; gap: 1.75rem; }
-.info-item h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+/* These are h2 for the document outline (h1 -> h2, no skip); the visual scale
+   is the small label it always was, not the section-heading h2 scale. */
+.info-item h2 { font-size: 1rem; letter-spacing: -0.01em; margin-bottom: 0.3rem; }
 .info-item p { color: var(--silver); margin: 0; }
-.info-item a { color: var(--paper); }
+/* The email address is the page's primary contact action on a phone, so it
+   carries the 44px touch minimum. */
+.info-item a {
+  color: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
 
 /* --------------------------------------------------------------------------
    17. Footer
@@ -939,7 +965,7 @@ a.card:hover .card-more { color: var(--paper); }
   color: var(--paper);
   margin-bottom: 0.9rem;
 }
-.footer-col ul { list-style: none; display: grid; gap: 0.55rem; }
+.footer-col ul { list-style: none; display: grid; gap: 0; }
 .footer-col li,
 .footer-col a,
 .footer-col p {
@@ -949,6 +975,21 @@ a.card:hover .card-more { color: var(--paper); }
   margin: 0;
 }
 .footer-col a:hover { color: var(--paper); }
+/* Footer nav is real, repeated navigation, so its rows carry the 44px touch
+   minimum. Rows own the height and the gap goes to zero, which keeps link and
+   plain-text rows on the same rhythm; the anchor fills its row so the tap area
+   matches what the eye reads as the row. */
+.footer-col li {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+.footer-col li > a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+}
 .footer-bottom {
   display: flex;
   flex-wrap: wrap;

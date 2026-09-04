@@ -30,6 +30,11 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Preload the font CSS, not the font files. The fonts.gstatic.com URLs are
+     version- and UA-specific, so hardcoding one risks a double download or a
+     silent miss when Google rotates it; prioritising the stylesheet shortens
+     the first hop of the two-hop chain that gates the font fetch. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
 <link rel="stylesheet" href="css/styles.css">
 
@@ -61,7 +66,7 @@
 <header class="site-header">
   <div class="container header-inner">
     <a class="logo" href="index.html">
-      <img class="logo-mark" src="assets/icon-header.png" alt="" width="36" height="35">
+      <img class="logo-mark" src="assets/icon-header.png" alt="" width="36" height="35" fetchpriority="high">
       <span class="logo-text">Miami <span class="chrome">AI</span> Solutions</span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
@@ -88,7 +93,7 @@
       <div>
         <span class="eyebrow">AI automation &amp; software studio — Miami, FL</span>
         <h1>Building AI-powered digital products &amp; business solutions.</h1>
-        <p class="lede">We design and build automation systems, AI agents, and full-stack software that take real work off your team's plate — built and shipped for real businesses, not slideware.</p>
+        <p class="lede">We design and build automation systems, AI agents, and full-stack software that take real work off your team’s plate — built and shipped for real businesses, not slideware.</p>
         <div class="btn-row">
           <a class="btn btn-primary" href="contact.html">Start a project</a>
           <a class="btn btn-ghost" href="work.html">See our work</a>
@@ -259,12 +264,12 @@
         <li class="step">
           <span class="step-n">01</span>
           <h3>Discover</h3>
-          <p>We map the workflow or problem, and find where automation or AI genuinely helps — and where it doesn't.</p>
+          <p>We map the workflow or problem, and find where automation or AI genuinely helps — and where it doesn’t.</p>
         </li>
         <li class="step">
           <span class="step-n">02</span>
           <h3>Design</h3>
-          <p>We scope a concrete system: what it does, what it touches, and how you'll know it's working.</p>
+          <p>We scope a concrete system: what it does, what it touches, and how you’ll know it’s working.</p>
         </li>
         <li class="step">
           <span class="step-n">03</span>
@@ -297,7 +302,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="logo" href="index.html">
-          <img class="logo-mark" src="assets/icon-header.png" alt="" width="36" height="35">
+          <img class="logo-mark" src="assets/icon-header.png" alt="" width="36" height="35" loading="lazy" decoding="async">
           <span class="logo-text">Miami <span class="chrome">AI</span> Solutions</span>
         </a>
         <p>AI automation systems, AI agents, and full-stack software for businesses. Based in Miami, FL.</p>
