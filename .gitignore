@@ -1,0 +1,7 @@
+# Agent skill tooling — installed per-developer, not part of the site.
+# Skills for this project live at the global (user) scope instead, so nothing
+# about the local agent setup is versioned here. Same idea as .vercelignore:
+# development tooling stays out of the product.
+.agents/
+.claude/
+skills-lock.json
