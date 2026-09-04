@@ -210,6 +210,9 @@ strong { color: var(--paper); font-weight: 600; }
   text-decoration: none;
   padding: 0.25rem;
   margin-left: -0.25rem;
+  /* The 35px mark plus 2x0.25rem padding lands at 43px, one short of the
+     touch minimum; the floor costs a pixel and changes nothing visually. */
+  min-height: 44px;
 }
 .logo-mark {
   width: 36px;
