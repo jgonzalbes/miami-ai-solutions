@@ -5,3 +5,7 @@
 .agents/
 .claude/
 skills-lock.json
+
+# Proyecto aparte (rediseño para Caminito), sin relación con este repo. Vive
+# en esta carpeta solo por comodidad local; nunca debe commitearse.
+Pagina Web Caminito/
