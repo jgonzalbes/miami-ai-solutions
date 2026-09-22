@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carga — Screenshots of the import-analytics platform | Miami AI Solutions</title>
+<meta name="description" content="Screens from Carga, the full-stack import-analytics platform Miami AI Solutions designed and built, as used in its pilot.">
+<link rel="canonical" href="https://miami-ai-solutions-two.vercel.app/demos/carga.html">
+<meta name="theme-color" content="#171c28">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="demo.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="demo-bar">
+  <div class="container">
+    <a class="logo" href="../index.html">
+      <img class="logo-mark" src="../assets/icon-header.png" alt="" width="36" height="35">
+      <span class="logo-text">Miami <span class="chrome">AI</span> Solutions</span>
+    </a>
+    <a class="link" href="../work.html#carga">← Back to Work</a>
+  </div>
+</header>
+
+<main id="main" class="demo-main">
+  <div class="container">
+
+    <div class="demo-head">
+      <span class="eyebrow">Carga · Custom software</span>
+      <h1>Inside Carga</h1>
+      <p class="lede">Screens from the import-analytics platform we designed and built end to end, as used in its pilot. The interface is in Spanish, the language of the team using it.</p>
+    </div>
+
+    <div class="viewer" data-viewer>
+      <ul class="thumbs" aria-label="Screens">
+        <li>
+          <button class="thumb" type="button" aria-current="true" data-index="0">
+            <img src="../assets/work/carga/principal.png" alt="" width="788" height="1997" loading="lazy" decoding="async">
+            Monthly opportunities
+          </button>
+        </li>
+        <li>
+          <button class="thumb" type="button" aria-current="false" data-index="1">
+            <img src="../assets/work/carga/Resumen.png" alt="" width="788" height="1904" loading="lazy" decoding="async">
+            Product detail
+          </button>
+        </li>
+      </ul>
+
+      <div class="stage">
+        <div class="stage-bar">
+          <p class="stage-count" aria-live="polite"><span data-current>1</span> / <span data-total>2</span></p>
+          <div class="stage-nav">
+            <button class="demo-btn" type="button" data-prev aria-label="Previous screen">← Prev</button>
+            <button class="demo-btn" type="button" data-next aria-label="Next screen">Next →</button>
+          </div>
+        </div>
+
+        <figure class="stage-figure">
+          <div class="stage-frame">
+            <img data-stage src="../assets/work/carga/principal.png" width="788" height="1997"
+                 alt="Carga’s monthly opportunities screen: products shortlisted for import, each card showing a score out of 10, landed cost, sale price, net margin, ROI and risk flags, with a suggested decision stamp.">
+          </div>
+          <figcaption data-caption>
+            <strong>Monthly opportunities</strong>
+            The monthly shortlist. Each product gets a score out of 10, its landed cost, sale price, net margin and ROI, plus risk flags such as effective tariff or seller count — and a suggested call: import, review or pass.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <p class="demo-note">Stack: Next.js, TypeScript, Supabase, Claude API. We designed and built the interface, database, and AI integration.</p>
+
+  </div>
+</main>
+
+<script src="carga.js"></script>
+</body>
+</html>

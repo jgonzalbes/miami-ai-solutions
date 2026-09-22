@@ -7,7 +7,10 @@ GitHub Pages, Cloudflare Pages) and it works with zero configuration.
 ```
 index.html              Home
 services.html           Services + FAQ
-work.html               Case studies (#carga, #ai-sdr, #accounting-automation)
+work.html               Shipped systems + concepts in progress
+demos/                  Demo pages for the three shipped systems (own CSS/JS, CSP-safe)
+restaurant-reviews/     Review-analysis concept mockup, linked from work.html
+assets/work/            Card images and diagrams for work.html
 about.html              About
 contact.html            Contact form
 css/styles.css          Design system + every component

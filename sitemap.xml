@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://miami-ai-solutions-two.vercel.app/work.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -29,5 +29,23 @@
     <lastmod>2026-09-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://miami-ai-solutions-two.vercel.app/demos/carga.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://miami-ai-solutions-two.vercel.app/demos/ai-sdr.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://miami-ai-solutions-two.vercel.app/demos/accounting-automation.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

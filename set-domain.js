@@ -28,6 +28,9 @@ const FILES = [
   'work.html',
   'about.html',
   'contact.html',
+  'demos/carga.html',
+  'demos/ai-sdr.html',
+  'demos/accounting-automation.html',
   'sitemap.xml',
   'robots.txt'
 ];

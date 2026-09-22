@@ -12,3 +12,13 @@ README.md
 
 # One-time dev utility for rewriting the domain
 set-domain.js
+
+# restaurant-reviews/ se publica (work.html lo enlaza como concepto); su CSS y
+# JS viven en archivos aparte para cumplir la CSP. Solo quedan fuera los
+# prompts de trabajo que están junto al mockup.
+restaurant-reviews/*.md
+
+# Mockup de rediseno para Caminito (cliente): HTML autocontenido con CSS y JS
+# inline que la CSP del sitio (script-src 'self') bloquearia, mas ~5 MB de
+# fotos originales del cliente. Se comparte como archivo, no desde el sitio.
+Pagina Web Caminito/

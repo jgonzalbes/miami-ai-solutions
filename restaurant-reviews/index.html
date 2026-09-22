@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Análisis de Reviews con IA — Demostración</title>
+<meta name="description" content="Mockup de demostración de un sistema de análisis de reviews para restaurantes. Datos ilustrativos, no corresponden a un negocio real.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.9-.8L3 21l1.9-4.9A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z"/></svg>
+      </span>
+      Análisis de Reviews
+      <span class="brand-sub">Demostración</span>
+    </div>
+    <div class="account">
+      <span class="account-avatar" aria-hidden="true">BC</span>
+      Bistró Costanera · cuenta de ejemplo
+    </div>
+  </div>
+</header>
+
+<div class="sticky">
+  <!-- Disclaimer obligatorio: fijo, visible en las 4 pestañas -->
+  <div class="disclaimer">
+    <div class="wrap disclaimer-inner">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.6v.1"/></svg>
+      <span>Datos ilustrativos con fines de demostración — no corresponden a un negocio real.</span>
+    </div>
+  </div>
+
+  <div class="tabs-outer">
+    <div class="wrap">
+      <div class="tabs" role="tablist" aria-label="Vistas de la demostración">
+        <button class="tab" role="tab" id="tab-form" aria-controls="panel-form" aria-selected="true" tabindex="0"><span class="tab-num" aria-hidden="true">1</span>Formulario del cliente</button>
+        <button class="tab" role="tab" id="tab-dash" aria-controls="panel-dash" aria-selected="false" tabindex="-1"><span class="tab-num" aria-hidden="true">2</span>Dashboard del dueño</button>
+        <button class="tab" role="tab" id="tab-alert" aria-controls="panel-alert" aria-selected="false" tabindex="-1"><span class="tab-num" aria-hidden="true">3</span>Alerta urgente</button>
+        <button class="tab" role="tab" id="tab-google" aria-controls="panel-google" aria-selected="false" tabindex="-1"><span class="tab-num" aria-hidden="true">4</span>Invitación a Google</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ==================== 1 · FORMULARIO DEL CLIENTE ==================== -->
+  <section class="panel" id="panel-form" role="tabpanel" aria-labelledby="tab-form" tabindex="0">
+    <div class="view-head">
+      <p class="eyebrow">Vista 1 · Lo que ve el cliente</p>
+      <h1>Formulario de feedback</h1>
+      <p>Después de la visita, el link se envía a todos los clientes con contacto registrado, sin filtrar a nadie por cómo fue su experiencia; también se puede abrir desde un QR en la mesa. Es el mismo formulario, con el mismo texto, para todos los clientes: no cambia según el puntaje ni deriva a canales distintos.</p>
+    </div>
+
+    <div class="form-layout">
+      <div class="phone">
+        <div class="phone-bar"><span class="phone-notch"></span></div>
+        <div class="phone-body">
+
+          <form id="feedback-form" novalidate>
+            <p class="form-brandline">Bistró Costanera</p>
+            <h2 class="form-title">¿Cómo estuvo tu visita?</h2>
+            <p class="form-intro">Nos toma menos de un minuto y lo lee el equipo del restaurante.</p>
+
+            <fieldset class="field">
+              <legend>Tu puntaje</legend>
+              <div class="rating" id="rating" data-rating="0">
+                <input type="radio" name="rating" id="r1" value="1"><label for="r1" title="1 estrella"><span class="sr-only"></span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg></label>
+                <input type="radio" name="rating" id="r2" value="2"><label for="r2" title="2 estrellas"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg></label>
+                <input type="radio" name="rating" id="r3" value="3"><label for="r3" title="3 estrellas"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg></label>
+                <input type="radio" name="rating" id="r4" value="4"><label for="r4" title="4 estrellas"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg></label>
+                <input type="radio" name="rating" id="r5" value="5"><label for="r5" title="5 estrellas"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg></label>
+              </div>
+              <p class="rating-caption" id="rating-caption">Elige de 1 a 5 estrellas.</p>
+            </fieldset>
+
+            <fieldset class="field">
+              <legend>¿Sobre qué quieres contarnos?</legend>
+              <div class="chips">
+                <input type="radio" name="categoria" id="c1" value="Comida"><label for="c1">Comida</label>
+                <input type="radio" name="categoria" id="c2" value="Servicio"><label for="c2">Servicio</label>
+                <input type="radio" name="categoria" id="c3" value="Limpieza"><label for="c3">Limpieza</label>
+                <input type="radio" name="categoria" id="c4" value="Ambiente"><label for="c4">Ambiente</label>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label class="label" for="comentario">Tu comentario</label>
+              <textarea id="comentario" placeholder="Cuéntanos qué estuvo bien y qué podríamos mejorar."></textarea>
+              <p class="field-hint">Todos los comentarios llegan igual al restaurante, sea cual sea el puntaje.</p>
+            </div>
+
+            <div class="field">
+              <button type="submit" class="btn btn-primary btn-block">Enviar mi opinión</button>
+            </div>
+          </form>
+
+          <div class="thanks" id="thanks" hidden>
+            <div class="thanks-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <h3>¡Gracias por tu opinión!</h3>
+            <p>El equipo del restaurante ya la recibió.</p>
+            <div class="thanks-note">
+              En las próximas horas vas a recibir también, por separado, la invitación para dejar tu reseña pública en Google. Se envía a todos los clientes por igual, sin importar lo que hayas puesto aquí.
+            </div>
+            <button type="button" class="btn-link" id="reset-form">Volver a ver el formulario</button>
+          </div>
+
+        </div>
+      </div>
+
+      <div>
+        <div class="note">
+          <h3>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+            Un solo formulario, para todos
+          </h3>
+          <ul>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>El mismo texto y las mismas opciones para el 100% de los clientes.</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>No hay preguntas que aparezcan o desaparezcan según el puntaje elegido.</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Este formulario es interno y opcional. No reemplaza ni condiciona la reseña pública en Google.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="note">
+          <h3>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H7l-3 3z"/></svg>
+            Qué pasa con la respuesta
+          </h3>
+          <p class="mt-8">Cada respuesta se clasifica por categoría y sentimiento, se acumula para detectar patrones (vista 2) y, si el texto describe un riesgo concreto, dispara una alerta inmediata (vista 3).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 2 · DASHBOARD DEL DUEÑO ==================== -->
+  <section class="panel" id="panel-dash" role="tabpanel" aria-labelledby="tab-dash" tabindex="0" hidden>
+    <div class="view-head">
+      <p class="eyebrow">Vista 2 · Lo que ve el dueño</p>
+      <h1>Dashboard — agosto</h1>
+      <p>Todas las respuestas del formulario entran al análisis, las buenas y las malas por igual: la IA las cruza para detectar patrones y propone qué hacer con cada uno. Cada semana el dueño recibe este mismo resumen por email, con los patrones y las recomendaciones; las alertas urgentes no esperan a ese resumen (vista 3). Los porcentajes de esta demo son consistentes con las reviews del feed: se pueden verificar leyéndolas.</p>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi">
+        <p class="kpi-label">Reviews recibidas</p>
+        <p class="kpi-value">184</p>
+        <div class="kpi-foot">
+          <span class="kpi-delta up">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            12% vs. julio
+          </span>
+          <svg class="spark" width="62" height="22" viewBox="0 0 62 22" role="img" aria-label="Tendencia de los últimos 6 meses: 121, 134, 142, 151, 164 y 184 reviews">
+            <polyline class="line" points="1,19 13,15.7 25,13.7 37,11.4 49,8.1 61,3"/>
+            <circle class="end" cx="61" cy="3" r="2.1"/>
+          </svg>
+        </div>
+      </div>
+      <div class="kpi">
+        <p class="kpi-label">Rating promedio</p>
+        <p class="kpi-value">4,1 <small>/ 5</small></p>
+        <div class="kpi-foot">
+          <span class="kpi-delta">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            0,3 vs. julio
+          </span>
+          <svg class="spark" width="62" height="22" viewBox="0 0 62 22" role="img" aria-label="Tendencia de los últimos 6 meses: 4,5 · 4,4 · 4,5 · 4,4 · 4,4 · 4,1">
+            <polyline class="line" points="1,3 13,7 25,3 37,7 49,7 61,19"/>
+            <circle class="end" cx="61" cy="19" r="2.1"/>
+          </svg>
+        </div>
+      </div>
+      <div class="kpi">
+        <p class="kpi-label">Reviews con alguna queja</p>
+        <p class="kpi-value">68 <small>37%</small></p>
+        <div class="stack" role="img" aria-label="Desglose de las 68 quejas: servicio 28, comida 21, limpieza 12, ambiente 7">
+          <span class="s-servicio"></span>
+          <span class="s-comida"></span>
+          <span class="s-limpieza"></span>
+          <span class="s-ambiente"></span>
+        </div>
+        <ul class="stack-legend" aria-hidden="true">
+          <li><span class="dot dot-servicio"></span>Servicio <b>28</b></li>
+          <li><span class="dot dot-comida"></span>Comida <b>21</b></li>
+          <li><span class="dot dot-limpieza"></span>Limpieza <b>12</b></li>
+          <li><span class="dot dot-ambiente"></span>Ambiente <b>7</b></li>
+        </ul>
+      </div>
+      <div class="kpi">
+        <p class="kpi-label">Alertas urgentes</p>
+        <p class="kpi-value">1</p>
+        <div class="kpi-foot">
+          <span class="kpi-delta">Ver la vista 3</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash">
+
+      <!-- Bloque A: feed -->
+      <div class="dash-block">
+        <div class="section-title">
+          <h2>Reviews recientes</h2><span>10 de 184</span>
+          <button type="button" class="dash-toggle" aria-expanded="true" aria-controls="body-feed" aria-label="Mostrar u ocultar Reviews recientes">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="dash-body" id="body-feed">
+          <div class="card">
+            <div class="feed" id="feed"></div>
+            <p class="feed-foot">Orden cronológico, sin agrupar por sentimiento — igual que llegan.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <!-- Bloque B: patrones -->
+        <div class="dash-block">
+        <div class="section-title">
+          <h2>Patrones detectados</h2><span>agosto · 184 reviews analizadas</span>
+          <button type="button" class="dash-toggle" aria-expanded="true" aria-controls="body-patrones" aria-label="Mostrar u ocultar Patrones detectados">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="dash-body" id="body-patrones">
+        <div class="patterns">
+
+          <article class="pattern" id="patron-1" data-tone="neg" data-cat="servicio">
+            <div class="pattern-top">
+              <span class="pattern-badge" aria-hidden="true">1</span>
+              <h3>Espera en mesas con reserva, viernes y sábado a la noche</h3>
+            </div>
+            <p class="pattern-stat">41%</p>
+            <p class="pattern-summary">de las quejas del mes (28 de 68) mencionan demora entre la hora de la reserva y la asignación de mesa.</p>
+            <button type="button" class="disclose" aria-expanded="false" aria-controls="det-p1">
+              <span>Ver cómo se calculó</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="disclose-body" id="det-p1" hidden>
+              <p>El 82% de esas menciones cae entre las 20:30 y las 22:00 de viernes o sábado. Rating promedio de esas reviews: 2,1.</p>
+            </div>
+            <div class="pattern-foot">
+              <span class="tag">4 reviews en el feed</span>
+              <span class="tag">Categoría: servicio</span>
+            </div>
+          </article>
+
+          <article class="pattern" id="patron-2" data-tone="neg" data-cat="comida">
+            <div class="pattern-top">
+              <span class="pattern-badge" aria-hidden="true">2</span>
+              <h3>Pescado a la parrilla servido por debajo de temperatura</h3>
+            </div>
+            <p class="pattern-stat">43%</p>
+            <p class="pattern-summary">de las quejas sobre comida (9 de 21) nombran un plato de pescado a la parrilla tibio o frío.</p>
+            <button type="button" class="disclose" aria-expanded="false" aria-controls="det-p2">
+              <span>Ver cómo se calculó</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="disclose-body" id="det-p2" hidden>
+              <p>En julio ese número era 9%: es el patrón que más creció del mes.</p>
+            </div>
+            <div class="pattern-foot">
+              <span class="tag">2 reviews en el feed</span>
+              <span class="tag">Tendencia en alza</span>
+            </div>
+          </article>
+
+          <article class="pattern" id="patron-3" data-tone="neg" data-cat="limpieza">
+            <div class="pattern-top">
+              <span class="pattern-badge" aria-hidden="true">3</span>
+              <h3>Estado de los baños después de las 22:00</h3>
+            </div>
+            <p class="pattern-stat">10 de 12</p>
+            <p class="pattern-summary">quejas de limpieza del mes se registraron después de las 22:00.</p>
+            <button type="button" class="disclose" aria-expanded="false" aria-controls="det-p3">
+              <span>Ver cómo se calculó</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="disclose-body" id="det-p3" hidden>
+              <p>En 7 de esas 10, la misma review califica el resto del local como impecable: el problema es la franja horaria, no el local.</p>
+            </div>
+            <div class="pattern-foot">
+              <span class="tag">2 reviews en el feed</span>
+              <span class="tag">Incluye quejas dentro de reviews positivas</span>
+            </div>
+          </article>
+
+          <article class="pattern" id="patron-4" data-tone="pos" data-cat="ambiente">
+            <div class="pattern-top">
+              <span class="pattern-badge" aria-hidden="true">4</span>
+              <h3>La terraza y la carta de vinos son el motivo n.º 1 de recomendación</h3>
+            </div>
+            <p class="pattern-stat">61%</p>
+            <p class="pattern-summary">de las reviews de 5 estrellas mencionan la vista o la terraza, y el 34% menciona la carta de vinos por copa.</p>
+            <button type="button" class="disclose" aria-expanded="false" aria-controls="det-p4">
+              <span>Ver cómo se calculó</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="disclose-body" id="det-p4" hidden>
+              <p>Ninguna queja del mes apunta a estos dos temas.</p>
+            </div>
+            <div class="pattern-foot">
+              <span class="tag">2 reviews en el feed</span>
+              <span class="tag">Fortaleza a capitalizar</span>
+            </div>
+          </article>
+
+        </div>
+        </div>
+        </div>
+
+        <!-- Bloque C: recomendaciones -->
+        <div class="dash-block">
+        <div class="section-title">
+          <h2>Recomendaciones accionables</h2><span>cada una nace de un patrón</span>
+          <button type="button" class="dash-toggle" aria-expanded="true" aria-controls="body-recs" aria-label="Mostrar u ocultar Recomendaciones accionables">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="dash-body" id="body-recs">
+        <div class="recs">
+
+          <article class="rec">
+            <div class="rec-head">
+              <a class="rec-link" href="#patron-1" data-goto="patron-1" data-cat="servicio">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l9 9-9 9-9-9z"/></svg>
+                Patrón 1 · Espera con reserva
+              </a>
+              <span class="pill pill-cat">Operativa</span>
+            </div>
+            <div class="rec-body">
+              <h3>Escalonar las reservas de viernes y sábado en bloques de 15 minutos</h3>
+              <p class="rec-summary">Hoy las reservas entre 20:30 y 22:00 se cargan en bloques de 30 minutos, y todas las quejas de espera caen dentro de esa ventana.</p>
+              <button type="button" class="disclose" aria-expanded="false" aria-controls="det-r1">
+                <span>Ver detalle</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="disclose-body" id="det-r1" hidden>
+                <p>Dividir en bloques de 15 reparte las llegadas sin bajar la cantidad de cubiertos.</p>
+              </div>
+            </div>
+            <div class="upsell">
+              <p class="upsell-label">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/></svg>
+                Servicio sugerido por este patrón
+              </p>
+              <h4>Bot de WhatsApp para reservas — Miami AI Solutions</h4>
+              <p>4 de cada 5 de estas reviews se quejan de la falta de aviso, no de la espera en sí. El bot confirma la reserva, asigna el bloque solo y avisa al cliente cuando la mesa se demora más de 10 minutos, antes de que llegue al restaurante.</p>
+            </div>
+          </article>
+
+          <article class="rec">
+            <div class="rec-head">
+              <a class="rec-link" href="#patron-2" data-goto="patron-2" data-cat="comida">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l9 9-9 9-9-9z"/></svg>
+                Patrón 2 · Pescado frío
+              </a>
+              <span class="pill pill-cat">Producto / menú</span>
+            </div>
+            <div class="rec-body">
+              <h3>Cronometrar el pase de los platos de pescado a las mesas de terraza</h3>
+              <p class="rec-summary">Las 9 quejas de temperatura son todas de pescado a la parrilla, el plato con más pasos entre la plancha y la mesa.</p>
+              <button type="button" class="disclose" aria-expanded="false" aria-controls="det-r2">
+                <span>Ver detalle</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="disclose-body" id="det-r2" hidden>
+                <p>Medir el tiempo de pase durante 3 servicios completos antes de tocar la receta o cambiar de proveedor: el dato apunta al recorrido, no al producto.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="rec">
+            <div class="rec-head">
+              <a class="rec-link" href="#patron-3" data-goto="patron-3" data-cat="limpieza">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l9 9-9 9-9-9z"/></svg>
+                Patrón 3 · Baños después de las 22
+              </a>
+              <span class="pill pill-cat">Limpieza / ambiente</span>
+            </div>
+            <div class="rec-body">
+              <h3>Agregar dos rondas de control de baños, a las 21:45 y a las 22:45</h3>
+              <p class="rec-summary">La última ronda registrada del turno noche es a las 21:00, y el 83% de las quejas de limpieza entra después de las 22:00.</p>
+              <button type="button" class="disclose" aria-expanded="false" aria-controls="det-r3">
+                <span>Ver detalle</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="disclose-body" id="det-r3" hidden>
+                <p>Dos controles más cubren toda la franja sin sumar personal.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="rec">
+            <div class="rec-head">
+              <a class="rec-link" href="#patron-1" data-goto="patron-1" data-cat="servicio">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l9 9-9 9-9-9z"/></svg>
+                Patrón 1 · Espera con reserva
+              </a>
+              <span class="pill pill-cat">Atención al cliente</span>
+            </div>
+            <div class="rec-body">
+              <h3>Definir un protocolo de espera fijo para el turno noche</h3>
+              <p class="rec-summary">Ninguna de las 28 reviews sobre demoras menciona haber recibido un aviso, una disculpa o algún gesto durante la espera.</p>
+              <button type="button" class="disclose" aria-expanded="false" aria-controls="det-r4">
+                <span>Ver detalle</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="disclose-body" id="det-r4" hidden>
+                <p>Un protocolo fijo — avisar a los 10 minutos y ofrecer la copa de bienvenida en la barra — cambia la experiencia aunque el cuello de botella siga ahí.</p>
+              </div>
+              <p class="rec-guard">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.6v.1"/></svg>
+                <span>Recomendación a nivel equipo y turno. El sistema no evalúa, puntúa ni identifica a personas individuales.</span>
+              </p>
+            </div>
+          </article>
+
+          <article class="rec">
+            <div class="rec-head">
+              <a class="rec-link" href="#patron-4" data-goto="patron-4" data-cat="pos">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l9 9-9 9-9-9z"/></svg>
+                Patrón 4 · Terraza y vinos
+              </a>
+              <span class="pill pill-cat">Gestión de reputación</span>
+            </div>
+            <div class="rec-body">
+              <h3>Responder las reseñas positivas nombrando lo que el cliente destacó</h3>
+              <p class="rec-summary">El 61% de las reseñas de 5 estrellas nombra la terraza, pero solo el 12% de esas reseñas tiene respuesta del local.</p>
+              <button type="button" class="disclose" aria-expanded="false" aria-controls="det-r5">
+                <span>Ver detalle</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="disclose-body" id="det-r5" hidden>
+                <p>Responder mencionando el detalle concreto es lo que sostiene la recomendación boca a boca y mejora la posición en Google.</p>
+              </div>
+            </div>
+            <div class="upsell">
+              <p class="upsell-label">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/></svg>
+                Servicio sugerido por este patrón
+              </p>
+              <h4>Asistente de respuesta a reviews — Miami AI Solutions</h4>
+              <p>Con 184 reseñas por mes, responder una por una no escala. El asistente redacta un borrador para cada reseña — positiva o negativa — usando lo que ese cliente mencionó. El dueño aprueba o edita antes de publicar: nada se publica solo.</p>
+            </div>
+          </article>
+
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 3 · ALERTA URGENTE ==================== -->
+  <section class="panel" id="panel-alert" role="tabpanel" aria-labelledby="tab-alert" tabindex="0" hidden>
+    <div class="view-head">
+      <p class="eyebrow">Vista 3 · Canal separado</p>
+      <h1>Alerta urgente</h1>
+      <p>Hay reviews que no pueden esperar al resumen semanal. Cuando el texto describe un riesgo concreto, el sistema lo separa del resto y avisa en el momento — por WhatsApp y por email — sin importar cuántas estrellas haya puesto el cliente.</p>
+    </div>
+
+    <div class="alert-card">
+      <div class="alert-head">
+        <span class="alert-icon" aria-hidden="true">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18.6a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9.5v4.2M12 17.4v.1"/></svg>
+        </span>
+        <div>
+          <h2>Posible reacción alérgica durante el servicio</h2>
+          <p class="meta">Recibida el sábado 29 de agosto a las 21:14 · clasificada 3 minutos después · notificada a WhatsApp del dueño y email de gerencia</p>
+        </div>
+        <span class="alert-badge"><span class="dot" aria-hidden="true"></span>Requiere atención inmediata</span>
+      </div>
+
+      <div class="alert-body">
+        <div class="alert-meta-row">
+          <span class="stars" aria-label="1 de 5 estrellas">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="on" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg>
+          </span>
+          <span class="pill pill-cat">Comida</span>
+          <span class="pill pill-alert"><span class="dot" aria-hidden="true"></span>Riesgo de salud</span>
+          <span class="pill pill-cat">Origen: formulario interno</span>
+        </div>
+
+        <blockquote class="quote">Al reservar avisé que mi hija es alérgica al maní y lo repetí en la mesa antes de pedir. El postre que trajeron tenía praliné. Tuvimos que usar el autoinyector y salimos para la guardia.</blockquote>
+
+        <div class="alert-why">
+          <span class="alert-why-label">Por qué se clasificó como urgente:</span>
+          <span class="pill pill-alert">Alérgeno declarado y servido</span>
+          <span class="pill pill-alert">Uso de medicación de emergencia</span>
+          <span class="pill pill-alert">Atención médica posterior</span>
+        </div>
+
+        <div class="alert-actions">
+          <h3>Acciones sugeridas para hoy</h3>
+          <ul class="checklist">
+            <li><span class="checkbox" aria-hidden="true"></span><span>Contactar al cliente dentro de las próximas 2 horas.</span></li>
+            <li><span class="checkbox" aria-hidden="true"></span><span>Suspender el postre hasta revisar su ficha de alérgenos y la de sus insumos.</span></li>
+            <li><span class="checkbox" aria-hidden="true"></span><span>Registrar el incidente con fecha, hora, mesa y turno.</span></li>
+            <li><span class="checkbox" aria-hidden="true"></span><span>Revisar cómo viaja el aviso de alergia desde la reserva hasta la cocina.</span></li>
+          </ul>
+          <div class="btn-row">
+            <button type="button" class="btn btn-alert">Marcar en seguimiento</button>
+            <button type="button" class="btn btn-secondary">Asignar a gerencia</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3>Mejora general — resumen semanal</h3>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg><span>Necesita <b>varias reviews</b> para volverse un patrón.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg><span>Llega en el <b>resumen semanal</b>, junto al resto.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg><span>Se acciona en la <b>próxima planificación</b>.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg><span>Ejemplo: la demora de los viernes a la noche.</span></li>
+        </ul>
+      </div>
+      <div class="compare-col is-alert">
+        <h3>Alerta urgente — al instante</h3>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/></svg><span><b>Un solo caso alcanza.</b> No espera a que se repita.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/></svg><span>Notificación <b>inmediata</b> por WhatsApp y email.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/></svg><span>Requiere respuesta <b>el mismo día</b>.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/></svg><span>Alergias, cuerpos extraños, síntomas de intoxicación, lesiones en el local, aviso de denuncia.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note mt-20">
+      <h3>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4.5M12 8.1v.1"/></svg>
+        Dos aclaraciones importantes
+      </h3>
+      <ul>
+        <li>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Un puntaje bajo, por sí solo, no dispara una alerta.</b> Lo que la dispara es el contenido: hay reviews de 1 estrella que son mejora general, y reviews de 4 estrellas que son alerta urgente.</span>
+        </li>
+        <li>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>La review no se oculta ni se retiene.</b> Este cliente recibe la misma invitación a reseñar en Google que todos los demás. La alerta existe para que el restaurante pueda responder rápido, no para impedir que el cliente publique.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="history">
+      <div class="section-title"><h2>Alertas anteriores</h2><span>últimos 60 días</span></div>
+      <div class="history-item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <span class="t">Cuerpo extraño en un plato · resuelta y respondida al cliente</span>
+        <span class="d">8 ago · cerrada en 4 h</span>
+      </div>
+      <div class="history-item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <span class="t">Síntomas posteriores a la cena · descartada tras revisión de cocina</span>
+        <span class="d">12 jul · cerrada en 1 día</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 4 · INVITACIÓN A GOOGLE ==================== -->
+  <section class="panel" id="panel-google" role="tabpanel" aria-labelledby="tab-google" tabindex="0" hidden>
+    <div class="view-head">
+      <p class="eyebrow">Vista 4 · Reseña pública</p>
+      <h1>Invitación a reseñar en Google</h1>
+      <p>Es un envío automático, separado del formulario interno y sin ninguna condición. El sistema no consulta lo que el cliente respondió antes: manda el mismo mensaje, con el mismo link, a la misma hora, a todos.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num" aria-hidden="true">1</div>
+        <p class="step-when">Día 0 · 21:50</p>
+        <h3>Termina la visita</h3>
+        <p>El cliente paga y se va. Queda registrado su contacto, igual que en cualquier reserva.</p>
+      </div>
+      <div class="step">
+        <div class="step-num" aria-hidden="true">2</div>
+        <p class="step-when">+2 horas</p>
+        <h3>Formulario interno (opcional)</h3>
+        <p>El de la vista 1. Sirve para el equipo del restaurante. El cliente puede ignorarlo sin ninguna consecuencia.</p>
+      </div>
+      <div class="step is-key">
+        <div class="step-num" aria-hidden="true">3</div>
+        <p class="step-when">+24 horas</p>
+        <h3>Invitación a Google</h3>
+        <p>Se dispara sola. No lee el paso 2: sale igual si el cliente completó el formulario, si no lo completó, y sin importar qué puso.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="M9 12l2 2 4-4"/></svg>
+      <div>
+        <strong>Se envía automáticamente al 100% de los clientes, sin excepción.</strong>
+        <p>No hay lista de exclusión, no hay segmentación por puntaje y no hay ninguna rama condicional en el flujo. Es un solo mensaje, disparado por una sola regla: que la visita haya terminado.</p>
+      </div>
+    </div>
+
+    <div class="split">
+      <div>
+        <div class="split-head">
+          <p class="who">Cliente A</p>
+          <p class="what">Puso ★1 en el formulario interno</p>
+        </div>
+        <div class="phone">
+          <div class="phone-bar"><span class="phone-notch"></span></div>
+          <div class="chat">
+            <div class="bubble">
+              <p class="from">Bistró Costanera</p>
+              <p>¡Hola, Ana! Gracias por venir anoche 🙌</p>
+              <p>Si tienes un minuto, tu reseña en Google ayuda a que más personas nos encuentren.</p>
+              <span class="cta">Dejar mi reseña en Google →</span>
+              <p class="bubble-sign">Sea cual sea tu experiencia, nos sirve leerla. ¡Gracias!</p>
+              <p class="time">Enviado 21:50 · +24 h</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="split-head">
+          <p class="who">Cliente B</p>
+          <p class="what">Puso ★5 en el formulario interno</p>
+        </div>
+        <div class="phone">
+          <div class="phone-bar"><span class="phone-notch"></span></div>
+          <div class="chat">
+            <div class="bubble">
+              <p class="from">Bistró Costanera</p>
+              <p>¡Hola, Marcos! Gracias por venir anoche 🙌</p>
+              <p>Si tienes un minuto, tu reseña en Google ayuda a que más personas nos encuentren.</p>
+              <span class="cta">Dejar mi reseña en Google →</span>
+              <p class="bubble-sign">Sea cual sea tu experiencia, nos sirve leerla. ¡Gracias!</p>
+              <p class="time">Enviado 21:50 · +24 h</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="identical">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+      Mismo texto, mismo link, misma hora de envío. La única diferencia es el nombre.
+    </p>
+
+    <div class="legal">
+      <div class="note">
+        <h3>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Lo que sí hace el sistema
+        </h3>
+        <ul>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Invitar a reseñar en Google a todos los clientes con contacto registrado.</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Usar el formulario interno solo para trabajo interno: patrones, alertas y mejoras.</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Dejar registro de cada envío, con fecha y hora, por si hay que demostrar que el criterio fue parejo.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <h3>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>
+          Lo que no hace, por diseño
+        </h3>
+        <ul>
+          <li>
+            <svg class="no" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>
+            <span>Filtrar o segmentar el envío según el puntaje del formulario interno.</span>
+          </li>
+          <li>
+            <svg class="no" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>
+            <span>Desviar las opiniones negativas a un canal privado en lugar de Google.</span>
+          </li>
+          <li>
+            <svg class="no" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>
+            <span>Ofrecer descuentos o beneficios a cambio de una reseña positiva.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="legal-ref">
+      <b>Por qué está diseñado así.</b> Pedir la reseña pública solo a los clientes contentos —<i>review gating</i>— está prohibido en Estados Unidos por la regla de la FTC sobre reseñas y testimonios (16 CFR Part 465), vigente desde octubre de 2024, con multas civiles de hasta USD 53.088 por infracción (monto publicado para 2025; se ajusta por inflación cada año). Por eso el flujo de arriba no tiene ninguna bifurcación: no es una decisión de marketing, es un requisito del diseño.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p><strong>Datos ilustrativos con fines de demostración — no corresponden a un negocio real.</strong></p>
+    <p>Las reviews, los porcentajes y los nombres de esta pantalla son inventados. Son consistentes entre sí únicamente para que la demostración se pueda seguir de punta a punta.</p>
+    <p>Mockup visual sin backend, sin base de datos y sin integraciones. Los botones no ejecutan acciones reales.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
