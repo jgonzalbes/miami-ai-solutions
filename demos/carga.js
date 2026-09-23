@@ -17,7 +17,7 @@
       height: 1904,
       title: 'Product detail',
       caption: 'One product up close. A suggested verdict that Claude writes from the engine’s numbers — marked as a reading, not a decision — the arguments for and against, how the score breaks down by dimension, and the risks to check.',
-      alt: 'Carga’s product detail screen: headline cost, margin, ROI and capital figures, import / review / pass buttons, an AI-written suggested verdict with arguments for and against, and a table breaking the score down by dimension.'
+      alt: 'Carga’s product detail screen: headline cost, margin, ROI and capital figures, an AI-written suggested verdict with arguments for and against, and a table breaking the score down by dimension.'
     }
   ];
 
